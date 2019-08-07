@@ -9,8 +9,8 @@ node {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside {
-       sh 'npm install --only=dev'
-       sh 'npm test'
+       sh 'cd basics && npm install --only=dev'
+       sh 'cd basics && npm test'
      }
    }
    stage('test with a DB') {
@@ -28,4 +28,4 @@ node {
        def app = docker.build("navecohen/cicd:${commit_id}", './basics').push()
      }                                     
    }                                       
-}                                          
+}  
