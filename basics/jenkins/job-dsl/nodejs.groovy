@@ -52,7 +52,7 @@ pipelineJob('boilerplate-pipeline') {
             scm('H/5 * * * *')
     }
 
-    description('pipeline for $repo')
+    description('pipeline for \$repo')
     definition{
         cpsScm {
             scriptPath('./basics/misc/Jenkinsfile')
