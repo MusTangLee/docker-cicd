@@ -18,7 +18,7 @@ node {
    }
    stage('docker run') {
      sh label: '', script: '''docker rm docker_test
-      docker run --rm -tid --name docker_test -p 3000 yanivomc/docker-nodejs-demo:latest
+      docker run --rm -tid --name docker_test -p 3000 mustanglee/docker-cicd:latest
       docker kill docker_test
       
       '''
