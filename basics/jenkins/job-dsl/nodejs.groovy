@@ -52,10 +52,36 @@ pipelineJob('boilerplate-pipeline') {
             scm('H/5 * * * *')
     }
 
-    description('pipeline for \$repo')
+    description('pipeline for $repo')
     definition{
         cpsScm {
             scriptPath('./basics/misc/Jenkinsfile')
+            scm {
+                git{
+                    remote {
+                        url(repo)
+                        branches('master', '**/feature')
+                        extensions {} // required as otherwise it may try to tag the repo, which you may not want
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+pipelineJob('boilerplate-pipeline-v2') {
+
+    def repo = 'git://github.com/MusTangLee/docker-cicd.git'
+
+    triggers {
+            scm('H/5 * * * *')
+    }
+
+    description('pipeline for $repo')
+    definition{
+        cpsScm {
+            scriptPath('./basics/misc/Jenkinsfile.v2')
             scm {
                 git{
                     remote {
