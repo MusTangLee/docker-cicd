@@ -61,7 +61,7 @@ pipelineJob('boilerplate-pipeline') {
                     remote {
                         url(repo)
                         branches('master', '**/feature')
-                        extensions {} // required as otherwise it may try to tag the repo
+                        extensions {} // required as otherwise it may try to tag the repo, which you may not want
                     }
                 }
             }
