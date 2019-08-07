@@ -45,16 +45,24 @@ job('NodeJS Docker example') {
 }
 
 pipelineJob('boilerplate-pipeline') {
-    cps {
-        script(readFileFromWorkspace('./basics/misc/Jenkinsfile'))
-        sandbox()
+
+    def repo = 'git://github.com/MusTangLee/docker-cicd.git'
+
+    triggers {
+            scm('H/5 * * * *')
     }
 
-    cpsScm {
-        scm {
-            git{
-                remote {
-                    url('git://github.com/MusTangLee/docker-cicd.git')
+    description('pipeline for $repo')
+    definition{
+        cpsScm {
+            scriptPath('misc/jenkinsfile')
+            scm {
+                git{
+                    remote {
+                        url(repo)
+                        branches('master', '**/feature')
+                        extensions {} // required as otherwise it may try to tag the repo
+                    }
                 }
             }
         }
