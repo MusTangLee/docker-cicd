@@ -55,7 +55,7 @@ pipelineJob('boilerplate-pipeline') {
     description('pipeline for $repo')
     definition{
         cpsScm {
-            scriptPath('misc/jenkinsfile')
+            scriptPath('./basics/misc/Jenkinsfile')
             scm {
                 git{
                     remote {
